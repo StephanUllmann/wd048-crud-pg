@@ -1,6 +1,7 @@
 const express = require('express');
 require('colors');
 require('dotenv').config();
+const cors = require('cors');
 const { query } = require('./services/db.js');
 
 // const { seedDB } = require('./services/seedDB.js');
@@ -10,6 +11,7 @@ const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(express.json());
+app.use(cors());
 
 app.get('/', async (req, res) => {
   const result = await query('SELECT NOW();', []);
